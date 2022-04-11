@@ -20,9 +20,13 @@ export const userLikesTuit = (uid, tid) =>
     api.put(`${USERS_API}/${uid}/likes/${tid}`)
         .then(response => response.data);
 
-export const userTogglesTuitLikes = (uid, tid) =>
-    api.put(`${USERS_API}/${uid}/likes/${tid}`)
-        .then(response => response.data);
+export const userTogglesTuitLikes = async (uid, tid, coinNum) => {
+  await api.put(`${USERS_API}/${uid}/likes/${tid}`)
+      .then(response => response.data);
+  await api.post(`${USERS_API}/${uid}/increaseCoins/${coinNum}`)
+      .then(response => response.data);
+}
+
 
 export const findAllTuitsDisLikedByUser = (userId) =>
     api.get(`${USERS_API}/${userId}/dislikes`)
