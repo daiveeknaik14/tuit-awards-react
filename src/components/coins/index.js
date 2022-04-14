@@ -1,19 +1,24 @@
 import React, {useEffect, useState} from "react";
-import * as service from "../../services/security-service"
+import * as userService from "../../services/security-service"
+import * as coinService from "../../services/coins-service"
 
 const Coins = () => {
     const [user, setUser] = useState({});
+    const [coins, setCoins] = useState({});
     useEffect(async () => {
         try {
-          const user = await service.profile();
+          const user = await userService.profile();
+          console.log(user)
+          const coins = await coinService.findAllUserCoins(user._id)
+          setCoins(coins);
+          console.log(coins)
           setUser(user);
         } catch (e) {
         }
       }, []);
-    console.log(user)
     return(
         <div className="col">
-            <i className="fa fa-circle-thin fa-3x fa-pull-left"></i><h2>{user.coins}</h2>
+            <i className="fa fa-circle-thin fa-3x fa-pull-left"></i><h2></h2>
         </div>
     );
 };
