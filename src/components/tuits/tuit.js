@@ -4,7 +4,7 @@ import TuitImage from "./tuit-image";
 import TuitVideo from "./tuit-video";
 import {useNavigate, Link} from "react-router-dom";
 
-const Tuit = ({tuit, deleteTuit, likeTuit, dislikeTuit}) => {
+const Tuit = ({tuit, deleteTuit, likeTuit, dislikeTuit, awardTuit}) => {
   const navigate = useNavigate();
   const daysOld = (tuit) => {
       const now = new Date();
@@ -57,7 +57,7 @@ return(
         tuit.image &&
         <TuitImage tuit={tuit}/>
       }
-      <TuitStats tuit={tuit} likeTuit={likeTuit} dislikeTuit={dislikeTuit}/>
+      <TuitStats tuit={tuit} likeTuit={likeTuit} dislikeTuit={dislikeTuit} awardTuit={awardTuit}/>
     </div>
   </li>
 );

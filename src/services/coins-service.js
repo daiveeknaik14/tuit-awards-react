@@ -10,3 +10,7 @@ const api = axios.create({
 export const findAllUserCoins = (userId) =>
     api.get(`${COINS_API}/${userId}/coins`)
         .then(response => response.data);
+
+export const decreaseUserCoins = (coinNum) =>
+    api.get(`${COINS_API}/my/decreaseCoins/${coinNum}`)
+        .then(response => response.data);
