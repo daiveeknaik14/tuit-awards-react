@@ -18,7 +18,7 @@ const Coins = () => {
       }, []);
     return(
         <div className="col">
-            <i className="fa fa-circle-thin fa-3x fa-pull-left"></i><h2></h2>
+            <i className="fa fa-circle-thin fa-3x fa-pull-left"></i><h2>{JSON.stringify(coins)}</h2>
         </div>
     );
 };
