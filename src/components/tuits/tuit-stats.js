@@ -32,7 +32,7 @@ const TuitStats = ({tuit, likeTuit, dislikeTuit = () => {}, awardTuit = () => {}
                 {
                     <i className="fa-regular fa-circle-thin"></i>
                 }
-              {tuit.stats && tuit.stats.dislikes}
+              {tuit.stats && tuit.stats.awards}
           </span>
         </div>
         <div className="col">

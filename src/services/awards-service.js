@@ -10,6 +10,6 @@ const api = axios.create({
 
 export const userAwardsTuit = (tid) => {
     api.post(`${COINS_API}/my/decreaseCoins/10`)
-    return api.post(`${AWARDS_API}/my/tuits/${tid}/A1`)
+    return api.post(`${BASE_URL}/api/tuits/${tid}/mockaward`)
         .then(response => response.data);
 }
