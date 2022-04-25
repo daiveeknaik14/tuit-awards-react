@@ -1,23 +1,37 @@
 import React from "react";
 import Tuits from "../tuits";
 import * as service from "../../services/tuits-service";
+import * as awardService from "../../services/awards-service";
 import {useEffect, useState} from "react";
 import {useLocation, useParams} from "react-router-dom";
+import Awards from "../awards";
 
 const Home = () => {
   const location = useLocation();
   const {uid} = useParams();
   const [tuits, setTuits] = useState([]);
   const [tuit, setTuit] = useState('');
+  const [awards,setAwards] = useState([]);
   const userId = uid;
   const findTuits = () =>
       service.findAllTuits()
         .then(tuits => setTuits(tuits));
+  const findAwards = () =>
+      awardService.findAllAwards()
+          .then(awards => setAwards(awards));
+
   useEffect(() => {
     let isMounted = true;
     findTuits()
     return () => {isMounted = false;}
   }, []);
+
+  useEffect(() => {
+    let isMounted = true;
+    findAwards()
+    return () => {isMounted = false;}
+  }, []);
+
   const createTuit = () =>
       service.createTuit('my', {tuit})
           .then(findTuits)
@@ -58,6 +72,7 @@ const Home = () => {
       </div>
       <Tuits tuits={tuits}
              refreshTuits={findTuits}/>
+      <Awards awards={awards} refreshawards={findAwards}/>
     </div>
   );
 };

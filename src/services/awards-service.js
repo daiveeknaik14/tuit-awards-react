@@ -13,3 +13,7 @@ export const userAwardsTuit = (tid) => {
     return api.post(`${BASE_URL}/api/tuits/${tid}/mockaward`)
         .then(response => response.data);
 }
+
+export const findAllAwards = () =>
+    api.get(`${BASE_URL}/api/awards`)
+        .then(response => response.data);
