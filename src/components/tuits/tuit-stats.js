@@ -5,7 +5,18 @@ import * as service from "../../services/tuits-service";
 import * as awardService from "../../services/awards-service";
 
 
-const TuitStats = ({tuit, likeTuit, dislikeTuit = () => {}, awardTuit = () => {}}) => {
+const TuitStats = ({tuit, likeTuit, dislikeTuit = () => {}, awardTuit = () => {}, findAwardsByTuit = () => {}}) => {
+  const customStyles = {
+      content : {
+        top                   : '50%',
+        left                  : '50%',
+        right                 : 'auto',
+        bottom                : 'auto',
+        marginRight           : '-50%',
+        transform             : 'translate(-50%, -50%)',
+        backgroundColor       : '#0d6efd'      
+      }
+  };
     const [awards,setAwards] = useState([]);
     const findAwards = () =>
         awardService.findAllAwards()
@@ -59,9 +70,9 @@ const TuitStats = ({tuit, likeTuit, dislikeTuit = () => {}, awardTuit = () => {}
                 }
               {tuit.stats && tuit.stats.awards}
           </span>
-            <Modal isOpen={awardModalOpen}>
+            <Modal isOpen={awardModalOpen} style={customStyles}>
                 <button onClick={setAwardModalOpenToFalse}>x</button>
-                <Awards awards={awards} refreshawards={findAwards}/>
+                <Awards awards={awards} refreshawards={findAwards} awardTuit={awardTuit} tuit={tuit} findAwardsByTuit={findAwardsByTuit}/>
             </Modal>
         </div>
         <div className="col">
