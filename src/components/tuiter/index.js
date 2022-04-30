@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Navigation from "../navigation";
 import WhatsHappening from "../whats-happening";
 import {BrowserRouter, Routes, Route, HashRouter} from "react-router-dom";
@@ -17,12 +17,22 @@ import Signup from "../profile/signup";
 import TuitScreen from "../tuits/tuit-screen";
 import Coins from "../coins";
 import * as coinservice from "../../services/coins-service";
+import * as tuitservice from "../../services/tuits-service";
 
 function Tuiter () {
+  const [tuits, setTuits] = useState([]);
   const refreshCoins = () => {
     console.log("refreshed coins");
     return coinservice.findAllUserCoins();
-  }
+  };
+  const findTuits = () =>
+      tuitservice.findAllTuits()
+          .then(tuits => setTuits(tuits));
+  useEffect(() => {
+    let isMounted = true;
+    findTuits()
+    return () => {isMounted = false;}
+  }, []);
   return(
     <HashRouter>
       <div className="container">
@@ -39,7 +49,7 @@ function Tuiter () {
               <Route path="/tuiter/:uid" element={<Home/>}/>
               <Route path="/home" element={<Home/>}/>
               <Route path="/home/:uid" element={<Home/>}/>
-              <Route path="/explore" element={<Explore/>}/>
+              <Route path="/explore" element={<Explore tuits={tuits} refreshTuits={findTuits} refreshCoins={refreshCoins}/>}/>
               <Route path="/notifications" element={<Notifications/>}/>
               <Route path="/messages" element={<Messages/>}/>
               <Route path="/bookmarks" element={<Bookmarks/>}/>
