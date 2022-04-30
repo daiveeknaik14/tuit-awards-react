@@ -5,7 +5,7 @@ import * as likesService from "../../services/likes-service";
 import * as service from "../../services/tuits-service";
 import * as dislikesService from "../../services/dislikes-service"
 import * as awardsService from "../../services/awards-service"
-const Tuits = ({tuits = [], refreshTuits}) => {
+const Tuits = ({tuits = [], refreshTuits, refreshCoins}) => {
   const coinNum = 10
   const likeTuit = (tuit) =>
       likesService.userTogglesTuitLikes("my", tuit._id, coinNum)
@@ -19,7 +19,7 @@ const Tuits = ({tuits = [], refreshTuits}) => {
           .then(refreshTuits);
   const awardTuit = (tuit) =>
       awardsService.userAwardsTuit(tuit._id)
-          .then(refreshTuits);
+          .then(refreshTuits).then(refreshCoins);
   return (
       <div>
         <ul className="ttr-tuits list-group">

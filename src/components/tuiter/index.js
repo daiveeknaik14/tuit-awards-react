@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Navigation from "../navigation";
 import WhatsHappening from "../whats-happening";
 import {BrowserRouter, Routes, Route, HashRouter} from "react-router-dom";
@@ -16,8 +16,13 @@ import {Login} from "../profile/login";
 import Signup from "../profile/signup";
 import TuitScreen from "../tuits/tuit-screen";
 import Coins from "../coins";
+import * as coinservice from "../../services/coins-service";
 
 function Tuiter () {
+  const refreshCoins = () => {
+    console.log("refreshed coins");
+    return coinservice.findAllUserCoins();
+  }
   return(
     <HashRouter>
       <div className="container">
@@ -46,7 +51,7 @@ function Tuiter () {
             </Routes>
           </div>
           <div className="ttr-right-column">
-            <Coins/>
+            <Coins coin={refreshCoins}/>
             <WhatsHappening/>
           </div>
         </div>
