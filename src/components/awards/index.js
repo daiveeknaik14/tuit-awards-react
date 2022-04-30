@@ -9,6 +9,7 @@ import Award from "./award";
 const Awards = ({awards = [], refreshawards}) => {
     return (
         <div>
+            <h1>Awards@!!</h1>
             <ul className="ttr-tuits list-group">
                 {
                     awards.map && awards.map(award =>
