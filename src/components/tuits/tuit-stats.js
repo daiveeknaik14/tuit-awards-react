@@ -63,18 +63,24 @@ const TuitStats = ({tuit, likeTuit, dislikeTuit = () => {}, awardTuit = () => {}
     }
     return (
       <div className="row mt-2">
-        <div className="col">
-          <i className="far fa-message me-1"></i>
+          <div className="col">
+              <span style={{fontSize: '1.5em', color: 'blue'}}>
+                  <i className="fa-duotone fa-message me-1"></i>
+            </span>
           {tuit.stats && tuit.stats.replies}
         </div>
         <div className="col">
-          <i className="far fa-retweet me-1"></i>
+            <span style={{fontSize: '1.5em', color: 'blue'}}>
+                <i className="fa-duotone fa-retweet me-1"></i>
+            </span>
           {tuit.stats && tuit.stats.retuits}
         </div>
         <div className="col">
           <span onClick={() => likeTuit(tuit)}>
               {
-                  <i className="fa-regular fa-thumbs-up"></i>
+                  <span style={{fontSize: '1.5em', color: 'blue'}}>
+                    <i className="fa-duotone fa-thumbs-up"></i>
+                  </span>
               }
             {tuit.stats && tuit.stats.likes}
           </span>
@@ -82,7 +88,9 @@ const TuitStats = ({tuit, likeTuit, dislikeTuit = () => {}, awardTuit = () => {}
         <div className="col">
           <span onClick={() => dislikeTuit(tuit)}>
                 {
-                    <i className="fa-regular fa-thumbs-down"></i>
+                    <span style={{fontSize: '1.5em', color: 'blue'}}>
+                        <i className="fa-duotone fa-thumbs-down"></i>
+                    </span>
                 }
               {tuit.stats && tuit.stats.dislikes}
           </span>
@@ -90,7 +98,9 @@ const TuitStats = ({tuit, likeTuit, dislikeTuit = () => {}, awardTuit = () => {}
         <div className="col">
           <span onClick={setAwardModalOpenToTrue}>
                 {
-                    <i className="fa-regular fa-circle-thin"></i>
+                    <span style={{fontSize: '1.5em', color: 'blue'}}>
+                        <i className="fa-regular fa-trophy-star"></i>
+                    </span>
                 }
               {tuit.stats && tuit.stats.awards}
           </span>
@@ -103,7 +113,9 @@ const TuitStats = ({tuit, likeTuit, dislikeTuit = () => {}, awardTuit = () => {}
             </Modal>
         </div>
         <div className="col">
-          <i className="far fa-inbox-out"></i>
+            <span style={{fontSize: '1.5em', color: 'blue'}}>
+                 <i className="far fa-inbox-out"></i>
+            </span>
         </div>
       </div>
     );

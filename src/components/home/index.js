@@ -72,7 +72,6 @@ const Home = () => {
       </div>
       <Tuits tuits={tuits}
              refreshTuits={findTuits}/>
-      <Awards awards={awards} refreshawards={findAwards}/>
     </div>
   );
 };
