@@ -20,6 +20,23 @@ export const findAllAwards = () =>
         .then(response => response.data);
 
 export const findAwardByTuit = (tid) => {
-    api.get(`${BASE_URL}/api/awards/${tid}`)
-        .then(response => response.data)
+    return api.get(`${BASE_URL}/api/awards/${tid}`)
+        .then(response => { 
+            const x = response.data;
+            let toReturn = new Array(x);
+            let newArr = new Array();
+            newArr  = [].concat(...toReturn)
+            let awardsCount = new Map()
+            newArr.forEach(e => {
+                if (!awardsCount.has(e?.awards?.name)) {
+                    awardsCount.set(e?.awards?.name, 0)
+                }
+                let currCount = awardsCount.get(e?.awards?.name)
+                awardsCount.set(e?.awards?.name, currCount + 1)
+
+            })
+            awardsCount = Object.fromEntries(awardsCount)
+            //console.log(awardsCount)
+            return awardsCount
+            })
 }

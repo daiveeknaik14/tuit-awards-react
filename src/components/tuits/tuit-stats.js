@@ -22,11 +22,35 @@ const TuitStats = ({tuit, likeTuit, dislikeTuit = () => {}, awardTuit = () => {}
         awardService.findAllAwards()
             .then(awards => setAwards(awards));
 
+    const [award,setAward] = useState();
+    const findAward = () =>
+        findAwardsByTuit(tuit)
+            .then(serverAward => {
+            console.log('ser awa')
+            var result = Object.keys(serverAward).map((key) => [Number(key), serverAward[key]]);
+              console.log(serverAward)
+              setAward(serverAward)
+            console.log('awa')
+            console.log(award)
+          });
+
+    useEffect(() => {
+      let isMounted = true;
+      findAward()
+      return () => {isMounted = false;}
+    }, []);
+
     useEffect(() => {
         let isMounted = true;
         findAwards()
         return () => {isMounted = false;}
     }, []);
+
+    useEffect(() => {
+      console.log("useeff")
+      console.log(award)
+    }, [award])
+
 
     const [awardModalOpen, setAwardsModalOpen] = useState(false);
 
@@ -72,7 +96,10 @@ const TuitStats = ({tuit, likeTuit, dislikeTuit = () => {}, awardTuit = () => {}
           </span>
             <Modal isOpen={awardModalOpen} style={customStyles}>
                 <button onClick={setAwardModalOpenToFalse}>x</button>
-                <Awards awards={awards} refreshawards={findAwards} awardTuit={awardTuit} tuit={tuit} findAwardsByTuit={findAwardsByTuit}/>
+                {
+                  award && 
+                <Awards awards={awards} refreshawards={findAwards} awardTuit={awardTuit} tuit={tuit} award={award}/>
+                }
             </Modal>
         </div>
         <div className="col">

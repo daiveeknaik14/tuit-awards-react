@@ -6,18 +6,42 @@ import Tuit from "../tuits/tuit";
 import Award from "./award";
 import React, {useEffect, useState} from "react";
 
-const Awards = ({awards = [], refreshawards, awardTuit, tuit, findAwardsByTuit}) => {
+const Awards = ({awards = [], refreshawards, awardTuit, tuit, award}) => {
     return (
         <div>
-            <h1></h1>
             <ul className="ttr-tuits list-group">
                 {
                     awards.map && awards.map(award =>
                         <Award tuit={tuit} awardTuit={awardTuit} key={award._id}
-                              award={award} findAwardsByTuit={findAwardsByTuit} / >)
+                              award={award} award={award} / >)
                 }
 
             </ul>
+            <hr/>
+            <ul>
+            {
+                award && <>
+                {award.A1 && <>
+                    <div>A1: {award.A1}</div>
+                </>
+                }
+                {award.A2 && <>
+                    <div>A2: {award.A2}</div>
+                </>
+                }
+                {award.A3 && <>
+                    <div>A3: {award.A3}</div>
+                </>
+                }
+                {award.A4 && <>
+                    <div>A4: {award.A4}</div>
+                </>
+                }
+                </>
+            }
+            
+            </ul>
+
         </div>
     );
 }

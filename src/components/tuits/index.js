@@ -22,7 +22,7 @@ const Tuits = ({tuits = [], refreshTuits}) => {
           .then(refreshTuits);
   const findAwardsByTuit = (tuit) =>
       awardsService.findAwardByTuit(tuit._id)
-          .then(refreshTuits);
+        
   return (
       <div>
         <ul className="ttr-tuits list-group">
