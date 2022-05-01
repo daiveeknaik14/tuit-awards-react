@@ -5,15 +5,17 @@ const Award = ({award, refreshawards, tuit, awardTuit, findAwardsByTuit}) => {
     return (
         <div>
             <h1></h1>
-            <ul className="ttr-tuits list-group">
+
                 {
                     <>
                     <span onClick={() => awardTuit(tuit, award.name, award.coins)}>
-                    <h1>{award.name} : {award.coins}</h1>
+                     <img src={`../images/${award.name}.png`}/>
+                    <h1><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"></link>
+<span className="bi bi-coin blue-color" style={{fontSize: "35px", color: 'gold'}}/> {award.coins}</h1>
                     </span>
                     </>
                 }
-            </ul>
+
         </div>
     );
 }

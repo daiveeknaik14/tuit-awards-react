@@ -6,7 +6,7 @@ import * as awardService from "../../services/awards-service";
 
 
 const TuitStats = ({tuit, likeTuit, dislikeTuit = () => {}, awardTuit = () => {}, findAwardsByTuit = () => {}}) => {
-  const customStyles = {
+  /*const customStyles = {
       content : {
         top                   : '50%',
         left                  : '50%',
@@ -14,9 +14,23 @@ const TuitStats = ({tuit, likeTuit, dislikeTuit = () => {}, awardTuit = () => {}
         bottom                : 'auto',
         marginRight           : '-50%',
         transform             : 'translate(-50%, -50%)',
-        backgroundColor       : '#0d6efd'      
+        backgroundColor       : 'white'
       }
-  };
+  };*/
+    const customStyles = {
+        content : {
+            position: 'absolute',
+            left: '20.5rem',
+            right: '20.5rem',
+            top: '7.5rem',
+            bottom: '7.5rem',
+    boxShadow: '0 0 10px 0 rgba(0,0,97,0.5)',
+    overflow: 'auto',
+    borderRadius: '4px',
+    outline: 'none',
+            backgroundColor: '#F6F3ED'
+        }
+    };
     const [awards,setAwards] = useState([]);
     const findAwards = () =>
         awardService.findAllAwards()
@@ -105,7 +119,7 @@ const TuitStats = ({tuit, likeTuit, dislikeTuit = () => {}, awardTuit = () => {}
               {tuit.stats && tuit.stats.awards}
           </span>
             <Modal isOpen={awardModalOpen} style={customStyles}>
-                <button onClick={setAwardModalOpenToFalse}>x</button>
+                <button onClick={setAwardModalOpenToFalse} style = {{float: 'right', backgroundColor : '#E2532F'}}>x</button>
                 {
                   award && 
                 <Awards awards={awards} refreshawards={findAwards} awardTuit={awardTuit} tuit={tuit} award={award}/>
