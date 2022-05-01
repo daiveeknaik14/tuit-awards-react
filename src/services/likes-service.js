@@ -21,7 +21,6 @@ export const userLikesTuit = (uid, tid) =>
         .then(response => response.data);
 
 export const userTogglesTuitLikes = async (uid, tid, coinNum) => {
-    console.log("user id react" + uid);
   await api.put(`${USERS_API}/${uid}/likes/${tid}`)
       .then(response => response.data);
   await api.post(`${USERS_API}/${uid}/increaseCoins/${coinNum}`)

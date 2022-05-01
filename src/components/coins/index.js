@@ -8,10 +8,8 @@ const Coins = () => {
     useEffect(async () => {
         try {
           const user = await userService.profile();
-          console.log(user)
           const coins = await coinService.findAllUserCoins(user._id)
           setCoins(coins);
-          console.log(coins)
           setUser(user);
         } catch (e) {
         }
