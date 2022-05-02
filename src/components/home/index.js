@@ -2,8 +2,11 @@ import React from "react";
 import Tuits from "../tuits";
 import * as tuitservice from "../../services/tuits-service";
 import * as coinservice from "../../services/coins-service";
+import * as service from "../../services/tuits-service";
+import * as awardService from "../../services/awards-service";
 import {useEffect, useState} from "react";
 import {useLocation, useParams} from "react-router-dom";
+import Awards from "../awards";
 
 const Home = () => {
   const location = useLocation();
@@ -16,15 +19,27 @@ const Home = () => {
     return coinservice.findAllUserCoins()
         .then(coins => setCoins(coins));
   }
+  const [awards,setAwards] = useState([]);
   const userId = uid;
   const findTuits = () =>
       tuitservice.findAllTuits()
         .then(tuits => setTuits(tuits));
+  const findAwards = () =>
+      awardService.findAllAwards()
+          .then(awards => setAwards(awards));
+
   useEffect(() => {
     let isMounted = true;
     findTuits()
     return () => {isMounted = false;}
   }, []);
+
+  useEffect(() => {
+    let isMounted = true;
+    findAwards()
+    return () => {isMounted = false;}
+  }, []);
+
   const createTuit = () =>
       tuitservice.createTuit('my', {tuit})
           .then(findTuits)

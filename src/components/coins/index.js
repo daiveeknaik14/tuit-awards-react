@@ -12,7 +12,7 @@ const Coins = (refreshCoins) => {
           const user = await userService.profile();
           const coins = await coinService.findAllUserCoins(user._id)
           setCoins(coins);
-          console.log("coins inside index.js"+coins)
+          setUser(user);
         } catch (e) {
         }
       }, []);

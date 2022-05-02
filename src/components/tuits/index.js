@@ -17,9 +17,12 @@ const Tuits = ({tuits = [], refreshTuits, refreshCoins}) => {
   const dislikeTuit = (tuit) =>
       dislikesService.userTogglesTuitDislikes("my", tuit._id)
           .then(refreshTuits);
-  const awardTuit = (tuit) =>
-      awardsService.userAwardsTuit(tuit._id)
-          .then(refreshTuits).then(refreshCoins);
+  const awardTuit = (tuit, awardName, coins) =>
+      awardsService.userAwardsTuit(tuit._id, awardName, coins)
+          .then(refreshTuits).then(refreshCoins);;
+  const findAwardsByTuit = (tuit) =>
+      awardsService.findAwardByTuit(tuit._id)
+        
   return (
       <div>
         <ul className="ttr-tuits list-group">
@@ -30,6 +33,7 @@ const Tuits = ({tuits = [], refreshTuits, refreshCoins}) => {
                       likeTuit={likeTuit}
                       dislikeTuit={dislikeTuit}
                       awardTuit={awardTuit}
+                      findAwardsByTuit={findAwardsByTuit}
                       tuit={tuit}/>)
           }
         </ul>
