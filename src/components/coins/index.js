@@ -1,12 +1,10 @@
 import React, {useEffect, useState} from "react";
 import * as userService from "../../services/security-service"
 import * as coinService from "../../services/coins-service"
-import "./coin.css";
 
-const Coins = (refreshCoins) => {
-    const [user, setUser] = useState([]);
-    const [coins, setCoins] = useState([]);
-    console.log("coins1"+coins);
+const Coins = () => {
+    const [user, setUser] = useState({});
+    const [coins, setCoins] = useState({});
     useEffect(async () => {
         try {
           const user = await userService.profile();
@@ -17,10 +15,8 @@ const Coins = (refreshCoins) => {
         }
       }, []);
     return(
-        <div className="col" id="coins">
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"></link>
-            {/*<i className="fa fa-circle-thin fa-3x fa-pull-left"></i><h2>{JSON.stringify(coins)}</h2>*/}
-            <span className="bi bi-coin blue-color">{coins > 0 && JSON.stringify(coins)}</span>
+        <div className="col">
+            <i className="fa fa-circle-thin fa-3x fa-pull-left"></i><h2>{JSON.stringify(coins)}</h2>
         </div>
     );
 };
