@@ -1,7 +1,5 @@
 import React from "react";
 import Tuits from "../tuits";
-import * as tuitservice from "../../services/tuits-service";
-import * as coinservice from "../../services/coins-service";
 import * as service from "../../services/tuits-service";
 import * as awardService from "../../services/awards-service";
 import {useEffect, useState} from "react";
@@ -13,16 +11,10 @@ const Home = () => {
   const {uid} = useParams();
   const [tuits, setTuits] = useState([]);
   const [tuit, setTuit] = useState('');
-  const [coins, setCoins] = useState([]);
-  const refreshCoins = () => {
-    console.log("refreshed coins");
-    return coinservice.findAllUserCoins()
-        .then(coins => setCoins(coins));
-  }
   const [awards,setAwards] = useState([]);
   const userId = uid;
   const findTuits = () =>
-      tuitservice.findAllTuits()
+      service.findAllTuits()
         .then(tuits => setTuits(tuits));
   const findAwards = () =>
       awardService.findAllAwards()
@@ -41,7 +33,7 @@ const Home = () => {
   }, []);
 
   const createTuit = () =>
-      tuitservice.createTuit('my', {tuit})
+      service.createTuit('my', {tuit})
           .then(findTuits)
   return(
     <div className="ttr-home">
@@ -79,8 +71,7 @@ const Home = () => {
         </div>
       </div>
       <Tuits tuits={tuits}
-             refreshTuits={findTuits}
-             refreshCoins={refreshCoins}/>
+             refreshTuits={findTuits}/>
     </div>
   );
 };
